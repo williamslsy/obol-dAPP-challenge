@@ -1,12 +1,12 @@
-import { HardhatUserConfig } from "hardhat/types";
-import "@nomicfoundation/hardhat-toolbox";
-import dotenv from "dotenv";
+import '@nomicfoundation/hardhat-toolbox';
+import dotenv from 'dotenv';
+import { HardhatUserConfig } from 'hardhat/types';
 
 dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.20",
+    version: '0.8.20',
     settings: {
       optimizer: {
         enabled: true,
@@ -15,6 +15,9 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    hardhat: {
+      chainId: 31337,
+    },
     sepolia: {
       url: process.env.HTTP_PROVIDER_URL,
       accounts: [process.env.PRIVATE_KEY as string],
