@@ -53,7 +53,7 @@ Run the development server:
 
 - **Shadcn-UI:** My go-to for initializing UI components and defining the application layout.
 
-- **TailwindCSS:** Employed for custom styling and responsive design.
+- **TailwindCSS:** Employed for Atomic design, custom styling and responsive design.
 
 - **Next.js SSR (Server-Side Rendering):** For efficient data fetching and improved performance through caching.
 
