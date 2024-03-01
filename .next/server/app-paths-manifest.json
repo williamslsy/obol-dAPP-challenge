@@ -1,0 +1,7 @@
+{
+  "/my-pokemons/page": "app/my-pokemons/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pokemon/[slug]/page": "app/pokemon/[slug]/page.js",
+  "/_not-found": "app/_not-found.js",
+  "/page": "app/page.js"
+}
