@@ -53,7 +53,7 @@ export default function PokemonList({ pokemonList }: PokemonListProps) {
           />
         ))}
       </div>
-      <PaginationControls prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPages={totalPages} />
+      {pokemonList.length > 0 && <PaginationControls prevPage={prevPage} nextPage={nextPage} currentPage={currentPage} totalPages={totalPages} />}
     </>
   );
 }

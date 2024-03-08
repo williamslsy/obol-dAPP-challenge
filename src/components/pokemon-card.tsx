@@ -29,7 +29,7 @@ function PokemonCard({ name, abilities, imageDefault, imageShiny, id, isCollecte
 
   return (
     <section className="group rounded-lg bg-obolDark transition-colors">
-      <Image src={imageShiny} alt={name} width={320} height={180} className="object-cover mx-auto" priority />
+      <Image src={imageShiny} alt={name} width={320} height={180} className="object-cover mx-auto" />
       <div className="flex flex-col justify-between items-center p-4 h-64 bg-obolDark rounded-b-lg">
         <h2 className="text-xl font-semibold text-white ">{firstLetterToUppercase(name)}</h2>
 

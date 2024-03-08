@@ -1,7 +1,7 @@
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { TPokemon } from '@/lib/types';
 
 type SearchBarProps = {
@@ -12,25 +12,32 @@ type SearchBarProps = {
 };
 
 export default function SearchBar({ searchText, setSearchText, handleFilterList, pokemonList }: SearchBarProps) {
-  const [filteredOptions, setFilteredOptions] = useState<string[]>(pokemonList.map((pokemon: any) => pokemon.name));
+  const [filteredOptions, setFilteredOptions] = useState<string[]>(pokemonList.map((pokemon: TPokemon) => pokemon.name));
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filteredValue = e.target.value.replace(/[^A-Za-z\s]/g, '');
-    setSearchText(filteredValue);
-    setDropdownVisible(true);
-    if (filteredValue) {
-      const lowerCaseValue = filteredValue.toLowerCase();
-      const filtered = pokemonList.filter((pokemon: any) => pokemon.name.toLowerCase().includes(lowerCaseValue));
-      setFilteredOptions(filtered.slice(0, 10).map((pokemon: any) => pokemon.name));
-    } else {
-      setFilteredOptions(pokemonList.slice(0, 10).map((pokemon: any) => pokemon.name));
-    }
-  };
 
-  const handleSearch = (event: any) => {
-    event.preventDefault();
-    handleFilterList(event);
-  };
+  const onChangeText = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const filteredValue = e.target.value.replace(/[^A-Za-z\s]/g, '');
+      setSearchText(filteredValue);
+      setDropdownVisible(true);
+      if (filteredValue) {
+        const lowerCaseValue = filteredValue.toLowerCase();
+        const filtered = pokemonList.filter((pokemon: any) => pokemon.name.toLowerCase().includes(lowerCaseValue));
+        setFilteredOptions(filtered.slice(0, 10).map((pokemon: TPokemon) => pokemon.name));
+      } else {
+        setFilteredOptions(pokemonList.slice(0, 10).map((pokemon: TPokemon) => pokemon.name));
+      }
+    },
+    [pokemonList, setSearchText]
+  );
+
+  const handleSearch = useCallback(
+    (event: any) => {
+      event.preventDefault();
+      handleFilterList(event);
+    },
+    [handleFilterList]
+  );
 
   return (
     <form onSubmit={handleSearch} className="flex items-center h-12 w-full max-w-4xl mr-auto gap-x-6 mb-12">

@@ -10,11 +10,6 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, list, options, setInputValue, dropdownVisible, setDropdownVisible, ...props }, ref) => {
-  console.log({
-    list,
-    options,
-    props,
-  });
   return (
     <div className="relative">
       <input
